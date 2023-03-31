@@ -1,5 +1,11 @@
 package com.bitresturantproject;
 
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
+import java.util.Arrays;
+import com.facebook.react.shell.MainReactPackage;
+import com.facebook.react.ReactPackage;
 import android.app.Application;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -9,25 +15,27 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
+import com.facebook.react.shell.MainReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
       new DefaultReactNativeHost(this) {
+        /* For Splash ====start==== */
         @Override
         public boolean getUseDeveloperSupport() {
-          return BuildConfig.DEBUG;
+            return BuildConfig.DEBUG;
         }
 
         @Override
         protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
-          List<ReactPackage> packages = new PackageList(this).getPackages();
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
-          return packages;
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage(),
+            new SplashScreenReactPackage()  //here
+            );
         }
 
+        /* ====end==== */
         @Override
         protected String getJSMainModuleName() {
           return "index";
@@ -44,10 +52,12 @@ public class MainApplication extends Application implements ReactApplication {
         }
       };
 
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
-  }
+      /* for splash screen */
+   @Override
+        public ReactNativeHost getReactNativeHost() {
+            return mReactNativeHost;
+        }
+      /* ====End==== */
 
   @Override
   public void onCreate() {

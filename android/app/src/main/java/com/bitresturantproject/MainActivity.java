@@ -8,6 +8,9 @@ import com.facebook.react.defaults.DefaultReactActivityDelegate;
 /* For React Native navigation */
 import android.os.Bundle;
 
+// react-native-splash-screen >= 0.3.1
+import org.devio.rn.splashscreen.SplashScreen; // here
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -37,8 +40,14 @@ public class MainActivity extends ReactActivity {
   }
 
   /* For React Native Navigation */
-   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
-  }
+//   @Override
+//  protected void onCreate(Bundle savedInstanceState) {
+//    super.onCreate(null);
+//  }
+  /* For Splash */
+  @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  // here
+        super.onCreate(savedInstanceState);
+    }
 }

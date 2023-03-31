@@ -4,8 +4,9 @@
  *
  * @format
  */
+import SplashScreen from 'react-native-splash-screen'
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -24,18 +25,18 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import IntroScreen from './screens/IntroScreen';
 import HomeScreen from './screens/HomeScreen';
 
+
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
 
+  useEffect(() => {
+    SplashScreen.hide();
+   }, [])
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='IntroScreen'>
-        <Stack.Screen
-          name="IntroScreen"
-          component={IntroScreen}
-          options={{ title: 'This is intro screen' }}
-        />
+      <Stack.Navigator>
         <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
